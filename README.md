@@ -1,6 +1,6 @@
-# Full-Stack Task Management System (DTS1)
+# Full-Stack Task Management System (Kelly Task Demo)
 
-A production-ready full-stack task management application with comprehensive testing, built with Spring Boot (backend) and React (frontend).
+A full-stack task management application with comprehensive testing, built with Spring Boot (backend) and React (frontend).
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://openjdk.org/)
@@ -9,27 +9,9 @@ A production-ready full-stack task management application with comprehensive tes
 
 ---
 
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [Documentation](#documentation)
-- [Features](#features)
-- [Technology Stack](#technology-stack)
-- [Quick Start](#quick-start)
-- [Project Structure](#project-structure)
-- [Development](#development)
-- [Testing](#testing)
-- [API Documentation](#api-documentation)
-- [Database](#database)
-- [Scripts](#scripts)
-- [Configuration](#configuration)
-- [Troubleshooting](#troubleshooting)
-
----
-
 ## 🎯 Overview
 
-DTS1 is a full-stack task management system designed with enterprise-grade patterns and comprehensive test coverage. The application demonstrates:
+This is a full-stack task management system designed with enterprise-grade patterns and comprehensive test coverage. The application demonstrates:
 
 - **Clean Architecture** with clear separation of concerns
 - **RESTful API** following best practices
@@ -184,109 +166,6 @@ _Task Management Dashboard - View and manage all your tasks with real-time statu
 
 ---
 
-## 📁 Project Structure
-
-```
-DTS1/
-├── kellybackendtask/              # Spring Boot backend
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/uk/gov/hmcts/reform/dev/
-│   │   │   │   ├── Application.java       # Main entry point
-│   │   │   │   ├── controllers/           # REST endpoints
-│   │   │   │   │   ├── TaskController.java
-│   │   │   │   │   ├── InfoController.java
-│   │   │   │   │   └── RootController.java
-│   │   │   │   ├── service/               # Business logic
-│   │   │   │   │   └── TaskService.java
-│   │   │   │   ├── repository/            # Data access
-│   │   │   │   │   ├── TaskRepository.java
-│   │   │   │   │   └── TaskSpecifications.java
-│   │   │   │   ├── entity/                # JPA entities
-│   │   │   │   │   └── TaskEntity.java
-│   │   │   │   ├── dto/                   # Data Transfer Objects
-│   │   │   │   │   ├── request/TaskRequest.java
-│   │   │   │   │   └── response/TaskResponse.java
-│   │   │   │   ├── mapper/                # DTO ↔ Entity mapping
-│   │   │   │   │   └── TaskMapper.java
-│   │   │   │   ├── exception/             # Error handling
-│   │   │   │   │   ├── GlobalExceptionHandler.java
-│   │   │   │   │   └── ResourceNotFoundException.java
-│   │   │   │   ├── constants/             # Constants
-│   │   │   │   │   └── TaskConstants.java
-│   │   │   │   ├── config/                # Configuration
-│   │   │   │   │   └── WebConfig.java
-│   │   │   │   └── models/                # Domain enums
-│   │   │   │       └── Status.java
-│   │   │   └── resources/
-│   │   │       ├── db/migration/          # Flyway migrations
-│   │   │       │   ├── V1__Create_task_table.sql
-│   │   │       │   └── V2__Add_task_status.sql
-│   │   │       └── application.yml        # Spring configuration
-│   │   ├── test/java/                     # Unit tests
-│   │   ├── integrationTest/java/          # Integration tests (Testcontainers)
-│   │   ├── functionalTest/java/           # Functional/API tests
-│   │   ├── smokeTest/java/                # Smoke tests
-│   │   └── e2eTest/java/                  # E2E tests (Testcontainers)
-│   ├── build.gradle                       # Build configuration
-│   └── gradle.properties                  # Gradle properties
-│
-├── kellyfrontendtask/                     # React frontend
-│   ├── src/
-│   │   ├── main.jsx                       # Application entry point
-│   │   ├── styles.css                     # Global styles
-│   │   ├── pages/                         # Route components
-│   │   │   ├── TaskListView.jsx           # List all tasks
-│   │   │   ├── CreateTask.jsx             # Create new task
-│   │   │   ├── TaskDetails.jsx            # View/edit task
-│   │   │   └── SearchTasks.jsx            # Search tasks
-│   │   ├── components/                    # Reusable components
-│   │   │   ├── Header.jsx
-│   │   │   ├── Footer.jsx
-│   │   │   └── ErrorBoundary.jsx
-│   │   ├── api/                           # API client
-│   │   │   └── tasks.js
-│   │   ├── models/                        # Domain models
-│   │   │   └── task.js
-│   │   ├── utils/                         # Utilities
-│   │   └── __tests__/                     # Test files
-│   │       ├── CreateTask.test.jsx        # Unit tests
-│   │       ├── TaskListView.test.jsx
-│   │       ├── SearchTasks.test.jsx       # Integration tests
-│   │       └── *Flow.test.jsx             # Functional tests
-│   ├── package.json                       # NPM dependencies
-│   ├── vite.config.js                     # Vite configuration
-│   └── vitest.config.js                   # Vitest configuration
-│
-├── scripts/                               # Utility scripts
-│   ├── dev-db.sh                          # Start dev database
-│   ├── dev-db-seed.sh                     # Seed database
-│   ├── db-apply-schema.js                 # Apply migrations
-│   ├── install-all-deps.sh                # Install all dependencies
-│   ├── cleanup-utils.sh                   # Cleanup utilities
-│   ├── memory-utils.sh                    # Memory management
-│   ├── timeout-config.sh                  # Timeout configuration
-│   ├── spotless-utils.sh                  # Code formatting
-│   ├── unified-log-indexer.js             # Log indexing
-│   ├── unified-test-logger.js             # Test logging
-│   └── serve-reports.js                   # Serve test reports
-│
-├── .devcontainer/                         # Dev container configuration
-│   ├── devcontainer.json                  # VS Code dev container config
-│   └── Dockerfile                         # Alpine Linux container
-│
-├── build-all.sh                           # Unified build script
-├── test-all.sh                            # Unified test orchestrator
-├── e2e.sh                                 # E2E test runner
-├── docker-compose.dev-db.yml              # Development database
-├── docker-compose.db.yml                  # Test database
-├── package.json                           # Root NPM scripts
-├── Makefile                               # Make targets
-└── README.md                              # This file
-```
-
----
-
 ## 💻 Development
 
 ### Build Commands
@@ -360,7 +239,6 @@ npm run test:integration:cat     # Integration tests
 npm run test:functional:cat      # Functional tests
 npm run test:smoke:cat           # Smoke tests
 ```
-
 ---
 
 ## 🧪 Testing
@@ -377,22 +255,6 @@ This project has **comprehensive test coverage** with multiple test levels:
 | **Smoke**       | ✅ 3 tests   | ✅ 2 tests   | Quick validation of critical paths      |
 | **E2E**         | ✅ 5 tests   | N/A          | Full system with real PostgreSQL        |
 
-### Run All Tests
-
-```bash
-# Run ALL tests (backend + frontend)
-npm run test:all
-sh ./test-all.sh
-
-# Run backend tests only
-npm run test:backend
-
-# Run frontend tests only
-npm run test:frontend
-
-# Run E2E tests only
-sh ./e2e.sh
-```
 
 ### Run Specific Test Categories
 
@@ -421,11 +283,7 @@ The E2E tests use **Testcontainers** to automatically:
 
 **No manual database setup required!**
 
-```bash
-# Run E2E tests
-sh ./e2e.sh
-
-# Or via Gradle (backend directory)
+# Gradle (backend directory)
 cd kellybackendtask
 ./gradlew e2e
 ```
@@ -443,27 +301,6 @@ npm run logs:index:test
 # - Backend coverage: http://localhost:8080/build-logs/
 # - Frontend coverage: http://localhost:8080/kellyfrontendtask/coverage/
 # - Test logs: http://localhost:8080/test-logs/
-```
-
----
-
-## 📚 API Documentation
-
-### OpenAPI/Swagger
-
-The backend provides interactive API documentation:
-
-- **Swagger UI**: http://localhost:4000/swagger-ui
-- **OpenAPI JSON**: http://localhost:4000/openapi
-
-### Generate OpenAPI Spec
-
-```bash
-# Generate docs/openapi.json
-sh scripts/generate-openapi.sh
-
-# Or via package.json
-npm run build:openapi
 ```
 
 ### Key Endpoints
@@ -508,13 +345,6 @@ curl -X DELETE http://localhost:4000/api/tasks/1
 
 ### Development Database
 
-```bash
-# Start PostgreSQL container
-sh scripts/dev-db.sh
-
-# Seed with sample data
-sh scripts/dev-db-seed.sh
-
 # Apply migrations manually
 npm run db:apply-schema
 ```
@@ -553,46 +383,7 @@ sudo docker exec -it dts-dev-postgres psql -U devuser -d devdb
 # Using psql (if installed locally)
 psql -h localhost -p 55432 -U devuser -d devdb
 ```
-
 ---
-
-## 🔧 Scripts
-
-The project includes comprehensive utility scripts:
-
-### Main Scripts
-
-| Script         | Description                |
-| -------------- | -------------------------- |
-| `build-all.sh` | Unified build orchestrator |
-| `test-all.sh`  | Comprehensive test runner  |
-| `e2e.sh`       | E2E test orchestrator      |
-
-### Utility Scripts (`scripts/`)
-
-| Script                   | Description                     |
-| ------------------------ | ------------------------------- |
-| `install-all-deps.sh`    | Install backend & frontend deps |
-| `dev-db.sh`              | Start development PostgreSQL    |
-| `dev-db-seed.sh`         | Seed database with sample data  |
-| `db-apply-schema.js`     | Apply Flyway migrations         |
-| `cleanup-utils.sh`       | Database cleanup utilities      |
-| `memory-utils.sh`        | Memory management helpers       |
-| `timeout-config.sh`      | Timeout configurations          |
-| `spotless-utils.sh`      | Code formatting utilities       |
-| `serve-reports.js`       | Serve test reports (port 8080)  |
-| `unified-log-indexer.js` | Index and organize logs         |
-| `unified-test-logger.js` | Centralized test logging        |
-| `generate-openapi.sh`    | Generate OpenAPI docs           |
-
-### Script Usage Examples
-
-```bash
-# Build with verbose output
-sh ./build-all.sh --verbose
-
-# Build backend only
-sh ./build-all.sh backend
 
 # Run tests with coverage
 npm run test:coverage
@@ -600,7 +391,6 @@ npm run test:coverage
 # Serve reports
 npm run reports:serve
 ```
-
 ---
 
 ## ⚙️ Configuration
@@ -754,7 +544,6 @@ rm -rf kellybackendtask/build
 rm -rf kellyfrontendtask/dist kellyfrontendtask/node_modules
 sudo docker compose -f docker-compose.dev-db.yml down -v
 ```
-
 ---
 
 ## 📝 Code Quality
@@ -785,16 +574,11 @@ cd kellyfrontendtask
 npm run typecheck                 # TypeScript checks
 npm run test:coverage             # Coverage report
 ```
-
 ---
 
 ## 🚢 Production Deployment
 
 ### Build for Production
-
-```bash
-# Build both backend and frontend
-sh ./build-all.sh
 
 # Backend JAR location
 ls -lh kellybackendtask/build/libs/*.jar
@@ -816,88 +600,3 @@ java -jar kellybackendtask/build/libs/kellybackendtask-0.0.1.jar
 # Use nginx, Apache, or any static file server
 # Point to: kellyfrontendtask/dist/
 ```
-
----
-
-## 🤝 Contributing
-
-### Development Workflow
-
-1. **Create a feature branch**
-
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-2. **Make changes and test**
-
-   ```bash
-   sh ./build-all.sh
-   sh ./test-all.sh
-   ```
-
-3. **Format code**
-
-   ```bash
-   cd kellybackendtask
-   ./gradlew spotlessApply
-   ```
-
-4. **Commit with clear messages**
-
-   ```bash
-   git commit -m "feat: add new feature"
-   ```
-
-5. **Run all checks before pushing**
-   ```bash
-   sh ./test-all.sh
-   cd kellybackendtask && ./gradlew check
-   ```
-
-### Code Style
-
-- Follow existing patterns and conventions
-- Write comprehensive tests for new features
-- Add Javadoc for public methods (backend)
-- Update README for significant changes
-- Use helper methods to avoid duplication
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👥 Authors
-
-- **Kelly Pang** - Initial work and maintenance
-
----
-
-## 📞 Support
-
-For issues, questions, or contributions:
-
-1. Check existing [documentation](docs/)
-2. Review [troubleshooting](#troubleshooting) section
-3. Search existing issues on GitHub
-4. Create a new issue with detailed information
-
----
-
-## 🎉 Acknowledgments
-
-- Spring Boot team for the excellent framework
-- React team for the robust UI library
-- Testcontainers for simplified integration testing
-- HMCTS for Java plugin and best practices
-- All contributors and maintainers
-
----
-
-**Last Updated:** October 16, 2025  
-**Version:** 0.0.1  
-**Repository:** DTS1
